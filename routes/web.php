@@ -33,8 +33,8 @@ Route::group(['namespace' => 'Dashboard'], function (){
     // Usuários - index ===================================================================================
     Route::get('/dashboard/users', 'UsersController@index')->name('dashboard.users');
 
-    // Dentistas - index ===================================================================================
-    Route::get('/dashboard/dentists', 'DentistsController@index')->name('dashboard.dentists');
+    // Colaboradores - index ===================================================================================
+    Route::get('/dashboard/collaborators', 'CollaboratorsController@index')->name('dashboard.collaborators');
 
 });
 

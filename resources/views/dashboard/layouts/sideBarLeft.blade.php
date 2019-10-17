@@ -36,7 +36,7 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{route('dashboard.index')}}"><i class="fa fa-home"></i> Página Principal </a></li>
                     <li class="active"><a href="{{route('dashboard.users')}}"><i class="fa fa-users"></i> Usuários </a></li>
-                    <li class="active"><a href="{{route('dashboard.dentist')}}"><i class="fa fa-users"></i> Dentistas </a></li>
+                    <li class="active"><a href="{{route('dashboard.collaborators')}}"><i class="fa fa-address-card"></i> Colaboradores </a></li>
                 </ul>
             </li>
         </ul>
