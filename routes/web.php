@@ -11,14 +11,33 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Rota de Home Externo ==================================================
+Route::group(['namespace' => 'Home'], function(){
+
+    Route::get('/', 'HomeController@index')->name('home.index');
+
 });
 
+// Rotas de autenticação geradas automaticamente ===============================================
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/teste', function () {
+    return view('auth.loginNew');
+});
 
-Auth::routes();
+Route::group(['namespace' => 'Dashboard'], function (){
 
-Route::get('/home', 'HomeController@index')->name('home');
+    // Painel de Controle - Dahsboard =====================================================================
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+
+    // Usuários - index ===================================================================================
+    Route::get('/dashboard/users', 'UsersController@index')->name('dashboard.users');
+
+    // Dentistas - index ===================================================================================
+    Route::get('/dashboard/dentists', 'DentistsController@index')->name('dashboard.dentists');
+
+});
+
+// Route::get('/', 'Home\HomeController@index')->name('home.index');
+// Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard.index');
+// Route::get('/dashboard/users', 'Dashboard\DashboardController@usersIndex')->name('dashboard.users');
