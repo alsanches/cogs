@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Moldels\Collaborator;
+use App\Http\Requests\CollaboratorsValidation;
+use App\Models\Collaborator;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class CollaboratorController extends Controller
 {
@@ -37,7 +40,8 @@ class CollaboratorController extends Controller
      */
     public function create()
     {
-        //
+        $title = "Cadastrar Colaborador";
+        return view('dashboard.collaborators.create');
     }
 
     /**
@@ -46,9 +50,29 @@ class CollaboratorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CollaboratorsValidation $request)
     {
-        //
+        /* $validator = Validator::make($request->all(), Collaborator::$rules, Collaborator::$messages ); */
+
+       /*  if ($validator->fails()) {
+            return redirect(route('collaborator.create'))
+                ->withErrors($validator)
+                ->withInput();
+        } */
+
+        $collaborator = $this->request->all();
+
+        $collaborator['user_id'] = auth()->user()->id;
+
+        Collaborator::create($collaborator);
+
+       /*  if($salvou) */
+            return redirect(route('collaborators.index'))
+                ->with('success', 'Colaborador cadastrado com sucesso.');
+        /* else
+            return redirect(route('collaborator.create'))
+                ->with('error', 'Erro ao cadastrar o Colaborador .'); */
+
     }
 
     /**

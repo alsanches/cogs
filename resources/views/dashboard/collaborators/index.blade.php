@@ -14,6 +14,7 @@
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
+            @include('dashboard.layouts.form-success')
             <div class="box">
                 <!-- .box-header -->
                 <div class="box-header">
@@ -21,9 +22,10 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                        <div align="left">
-                                <a href="{{route('collaborator.create')}}" class="btn btn-primary"><span class="fa fa-plus"></span> Novo Colaborador</a>
-                            </div>
+                    <div align="left">
+                        <a href="{{route('collaborator.create')}}" class="btn btn-primary"><span
+                                class="fa fa-plus"></span> Novo Colaborador</a>
+                    </div>
                     <table class="table table-bordered table-hover">
 
                         <thead class="thead-dark">
@@ -38,30 +40,30 @@
 
                         <tbody>
                             @forelse ($collaborators as $collaborator)
-                                <tr>
+                            <tr>
 
-                                    <td>{{$collaborator->name}}</td>
-                                    <td>{{$collaborator->surname}}</td>
-                                    <td>{{$collaborator->percent == 0 ? " Valor Fixo " : number_format($collaborator->percent, 2, ',', '.')}}
-                                        {{$collaborator->percent == 0 ? " " : "%"}}
-                                    </td>
+                                <td>{{$collaborator->name}}</td>
+                                <td>{{$collaborator->surname}}</td>
+                                <td>{{$collaborator->percent == 0 ? " Valor Fixo " : number_format($collaborator->percent, 2, ',', '.')}}
+                                    {{$collaborator->percent == 0 ? " " : "%"}}
+                                </td>
 
-                                    <td>{{$collaborator->parcelPercent == 0 ? " 6x iguais " : number_format($collaborator->parcelPercent, 2, ',', '.')}}
-                                        {{$collaborator->parcelPercent == 0 ? " " : "%"}}
-                                    </td>
+                                <td>{{$collaborator->parcelPercent == 0 ? " 6x iguais " : number_format($collaborator->parcelPercent, 2, ',', '.')}}
+                                    {{$collaborator->parcelPercent == 0 ? " " : "%"}}
+                                </td>
 
-                                    <td>{{$collaborator->email}}</td>
+                                <td>{{$collaborator->email}}</td>
 
-                                    <td class="text-center">
-                                        <a href="{{route('collaborator.show', $collaborator->id)}}"
-                                            class="btn btn-primary"><i class="fa fa-eye"></i></a> |
-                                        <a href="{{route('collaborator.edit', $collaborator->id)}}"
-                                            class="btn btn-warning"><i class="fa fa-pencil"></i></a> |
-                                        <a href="{{route('collaborator.destroy', $collaborator->id)}}"
-                                            class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                    </td>
+                                <td class="text-center">
+                                    <a href="{{route('collaborator.show', $collaborator->id)}}"
+                                        class="btn btn-primary"><i class="fa fa-eye"></i></a> |
+                                    <a href="{{route('collaborator.edit', $collaborator->id)}}"
+                                        class="btn btn-warning"><i class="fa fa-pencil"></i></a> |
+                                    <a href="{{route('collaborator.destroy', $collaborator->id)}}"
+                                        class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                </td>
 
-                                </tr>   
+                            </tr>
                             @empty
                             <p>Nenhum colaborador cadastrado</p>
                             @endforelse

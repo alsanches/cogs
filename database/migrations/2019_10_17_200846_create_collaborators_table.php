@@ -13,6 +13,7 @@ class CreateCollaboratorsTable extends Migration
      */
     public function up()
     {
+        
         Schema::create('collaborators', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('name', 50);
