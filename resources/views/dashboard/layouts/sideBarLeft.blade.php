@@ -8,7 +8,7 @@
                 <img src="{{asset('AdminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>{{$user->name}}</p>
+                <p>{{Auth::user()->name}}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -36,7 +36,7 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{route('dashboard.index')}}"><i class="fa fa-home"></i> Página Principal </a></li>
                     <li class="active"><a href="{{route('dashboard.users')}}"><i class="fa fa-users"></i> Usuários </a></li>
-                    <li class="active"><a href="{{route('dashboard.collaborators')}}"><i class="fa fa-address-card"></i> Colaboradores </a></li>
+                    <li class="active"><a href="{{route('collaborators.index')}}"><i class="fa fa-address-card"></i> Colaboradores </a></li>
                 </ul>
             </li>
         </ul>

@@ -2,33 +2,32 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Moldels\Collaborator;
+use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class CollaboratorController extends Controller
 {
+
+    private $collaboratorModel;
+    private $request;
+
+    public function __construct(Collaborator $collaboratorModel, Request $request)
+    {
+        $this->collaboratorModel = $collaboratorModel;
+        $this->request = $request;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public $request;
-    public $usuarios;
-
-    public function __construct(Request $request, User $usuarios)
-    {
-        $this->middleware('auth');
-        $this->request = $request;
-        $this->usuarios = $usuarios;
-    }
     public function index()
     {
-        $users = User::all();
-        $title = 'Painel de Usuários';
-        return view('dashboard.users.index', compact('title', 'users'));
+        $collaborators = $this->collaboratorModel->orderBy('name')->paginate(10);
+        $title = "Lista Colaboradores";
+        return view('dashboard.collaborators.index', compact('collaborators','title'));
     }
 
     /**

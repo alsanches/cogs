@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProceduresTable extends Migration
+class CreateCollaboratorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateProceduresTable extends Migration
      */
     public function up()
     {
-        Schema::create('procedures', function (Blueprint $table) {
+        Schema::create('collaborators', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('name', 100);
-            $table->double('amount',10,2);
-            $table->double('collabAmount',10,2);
+            $table->string('name', 50);
+            $table->string('surname',50);
+            $table->double('percent', 4, 2);
+            $table->double('parcelPercent', 4, 2);
+            $table->string('email',50);
+
             $table->text('obs',300)->nullable();
 
             $table->integer('user_id')->unsigned();
@@ -34,6 +37,6 @@ class CreateProceduresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('procedures');
+        Schema::dropIfExists('collaborators');
     }
 }
