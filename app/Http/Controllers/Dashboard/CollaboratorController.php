@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CollaboratorsValidation;
 use App\Models\Collaborator;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 
 class CollaboratorController extends Controller
@@ -83,8 +83,8 @@ class CollaboratorController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $collaborator = Collaborator::find($id);
+        return view('dashboard.collaborators.show', compact(['collaborator']));    }
 
     /**
      * Show the form for editing the specified resource.
@@ -94,7 +94,8 @@ class CollaboratorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $collaborator = Collaborator::find($id);
+        return view('dashboard.collaborators.edit', compact(['collaborator','id']));
     }
 
     /**
@@ -104,9 +105,23 @@ class CollaboratorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CollaboratorsValidation $request, $id)
     {
-        //
+        $collaborator = $this->request->all();
+
+        dd($id);
+
+        $collaborator['user_id'] = auth()->user()->id;
+
+        /* Collaborator::create($collaborator); */
+        $this->collaboratorModel->find($id)->update($collaborator);
+
+       /*  if($salvou) */
+            return redirect(route('collaborators.index'))
+                ->with('success', 'Colaborador atualizado com sucesso.');
+        /* else
+            return redirect(route('collaborator.create'))
+                ->with('error', 'Erro ao cadastrar o Colaborador .'); */
     }
 
     /**

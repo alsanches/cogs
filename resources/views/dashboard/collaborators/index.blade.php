@@ -33,7 +33,7 @@
                             <th scope="col">Sobrenome</th>
                             <th scope="col">Forma Pgto</th>
                             <th scope="col">% 1ª Parcela</th>
-                            <th scope="col">Email</th>
+                            <th scope="col" class="text-center">Email</th>
                             <!--th scope="col">Percentual</th-->
                             <th scope="col" class="text-center">Ações</th>
                         </thead>

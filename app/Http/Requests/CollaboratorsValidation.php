@@ -40,7 +40,7 @@ class CollaboratorsValidation extends FormRequest
             'name.min' => 'O nome do Colaborador deve ter pelo menos 3 caracteres.',
             'surname.required' => 'É necessário informar o sobrenome do Colaborador.',
             'surname.min' => 'O sobrenome do Colaborador deve ter pelo menos 3 caracteres.',
-            'percent' => 'É necessário informar o percentual que o Colaborador ganha por procedimento. Digite 0 para valor fixo.',
+            'percent' => 'É necessário informar o percentual que o Colaborador ganha por procedimento ou digite 0 para valor fixo.',
             'email.email' => 'O campo E-mail deve conter um endereço de email válido.',
             'email.required' => 'É necessário informar o email do Colaborador.',
             'email.unique' => 'Esse endereço de email já está sendo utilizado por outro Colaborador'
