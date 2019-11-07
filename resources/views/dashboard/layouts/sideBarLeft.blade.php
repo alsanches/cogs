@@ -37,6 +37,7 @@
                     <li class="active"><a href="{{route('dashboard.index')}}"><i class="fa fa-home"></i> Página Principal </a></li>
                     <li class="active"><a href="{{route('dashboard.users')}}"><i class="fa fa-users"></i> Usuários </a></li>
                     <li class="active"><a href="{{route('collaborators.index')}}"><i class="fa fa-address-card"></i> Colaboradores </a></li>
+                    <li class="active"><a href="{{route('procedures.index')}}"><i class="fa fa-address-book"></i> Procedimentos </a></li>
                 </ul>
             </li>
         </ul>

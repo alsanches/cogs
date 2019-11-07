@@ -16,8 +16,8 @@ class CreateProceduresTable extends Migration
         Schema::create('procedures', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('name', 100);
-            $table->double('amount',10,2);
-            $table->double('collabAmount',10,2);
+            $table->double('value',10,2);
+            $table->double('collabValue',10,2);
             $table->text('obs',300)->nullable();
 
             $table->integer('user_id')->unsigned();

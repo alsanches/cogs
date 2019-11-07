@@ -109,8 +109,6 @@ class CollaboratorController extends Controller
     {
         $collaborator = $this->request->all();
 
-        dd($id);
-
         $collaborator['user_id'] = auth()->user()->id;
 
         /* Collaborator::create($collaborator); */
@@ -132,6 +130,12 @@ class CollaboratorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $collaborator = Collaborator::find($id);
+
+        $collaborator->delete();
+
+        return redirect(route('collaborators.index'))
+                ->with('success', 'O Colaborador ' . $collaborator->name .
+                ' foi excluido com sucesso.');
     }
 }

@@ -33,9 +33,6 @@ Route::group(['namespace' => 'Dashboard'], function (){
     // Usuários - index ===================================================================================
     Route::get('/dashboard/users', 'UserController@index')->name('dashboard.users');
 
-    // Colaboradores - index ===================================================================================
-    Route::get('/dashboard/collaborators', 'CollaboratorController@index')->name('dashboard.collaborators');
-
 });
 
 
@@ -49,6 +46,18 @@ Route::group(['middleware' => ['auth'], 'namespace'=> 'Dashboard', 'prefix' => '
     Route::put('/update/{id}', 'CollaboratorController@update')->name('collaborator.update');
     Route::get('/destroy/{id}', 'CollaboratorController@destroy')->name('collaborator.destroy');
     Route::any('/search', 'CollaboratorController@search')->name('collaborator.search');
+});
+
+Route::group(['middleware' => ['auth'], 'namespace'=> 'Dashboard', 'prefix' => 'dashboard/procedures'], function(){
+
+    Route::get('/index', 'ProcedureController@index')->name('procedures.index');
+    Route::get('/show/{id}', 'ProcedureController@show')->name('procedure.show');
+    Route::get('/create', 'ProcedureController@create')->name('procedure.create');
+    Route::post('/store', 'ProcedureController@store')->name('procedure.store');
+    Route::get('/{id}/edit', 'ProcedureController@edit')->name('procedure.edit');
+    Route::put('/update/{id}', 'ProcedureController@update')->name('procedure.update');
+    Route::get('/destroy/{id}', 'ProcedureController@destroy')->name('procedure.destroy');
+    Route::any('/search', 'ProcedureController@search')->name('procedure.search');
 });
 
 
