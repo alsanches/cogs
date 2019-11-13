@@ -3,12 +3,12 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Gerência de Colaboradores
+        Gerência de Procedimentos
         <small>Sistema {{env('APP_NAME')}}</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{route('dashboard.index')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="acrive">Gerência de Colaboradores</li>
+        <li class="acrive">Gerência de Procedimento</li>
     </ol>
 </section>
 <section class="content">
@@ -18,67 +18,54 @@
             <div class="box">
                 <!-- .box-header -->
                 <div class="box-header">
-                    <h2 class="box-title">Dados do colaborador</h2>
+                    <h1 class="box-title"><strong> Detalhes do Procedimento </strong></h1>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
 
                     <div class="form-row">
                         <div class="form-group">
-                            <strong>Nome completo:</strong> {{$collaborator->name}} {{$collaborator->surname}}
+                            <strong>Procedimento:</strong> {{$procedure->name}}
+                        </div>
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="form-group">
+                            <strong>Valor Base:</strong>
+                            {{$procedure->value == null ? " - " : number_format($procedure->value, 2, ',', '.')}}
+        
+                        </div>
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="form-group">
+                            <strong>Valor Colaborador:</strong>
+                            {{$procedure->collabValue == null ? " - " : number_format($procedure->collabValue, 2, ',', '.')}}
+        
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-
-                            <strong>E-mail: </strong> {{$collaborator->email}}
+                            <strong>Obsevações: </strong> {{$procedure->obs == null ? "Procedimento não possui observações" : $procedure->obs}}
+                        </div>
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="form-group">
+                            <strong>Usuário inclusão: </strong> {{$procedure->user->name}}
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-
-                            <strong>Forma Pgto.:</strong>
-                            {{$collaborator->percent == null ? " Valor Fixo " : number_format($collaborator->percent, 2, ',', '.')}}
-                            {{$collaborator->percent == null ? " " : "%"}}
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-
-                            <strong>Parcelamento:</strong>
-                            {{$collaborator->parcelPercent == null ? " 6x iguais " : number_format($collaborator->parcelPercent, 2, ',', '.')}}
-                            {{$collaborator->parcelPercent == null ? " " : "% na primeira, demais " . number_format(((100-$collaborator->parcelPercent)/5), 2, ',','.') . "%"}}
-                        </div>
-                    </div>
-
-
-                    <div class="form-row">
-                        <div class="form-group">
-
-                            <strong>Obsevações: </strong>
-                            {{$collaborator->obs == null ? "Colaborador não possui observações" : $collaborator->obs}}
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-
-                            <strong>Usuário inclusão: </strong> {{$collaborator->user->name}}
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <strong>Cadastrado em: </strong> {{$collaborator->created_at->diffForHumans()}}
+                            <strong>Cadastrado em: </strong> {{$procedure->created_at->diffForHumans()}}
                         </div>
                     </div>
                 </div>
                 <div class="box box-footer">
                         <hr/>
-                        <a href="{{route('collaborators.index')}}" class="btn btn-primary">Retornar</a>
+                        <a href="{{route('procedures.index')}}" class="btn btn-primary">Retornar</a>
                     </div>
             </div>
         </div>

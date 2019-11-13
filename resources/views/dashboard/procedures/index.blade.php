@@ -54,7 +54,7 @@
                                 </td>
                             </tr>
                             @empty
-                            <p>Nenhum Procedimento Odontológico cadastrado</p>
+                            <p> <strong> Procedimento Odontológico cadastrado </strong></p>
                             @endforelse
                         </tbody>
                     </table>

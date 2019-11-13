@@ -14,7 +14,7 @@ class ProcedureController extends Controller
     private $procedureModel;
     private $request;
 
-    public function __construct( Procedure $procedureModel, Request $request)
+    public function __construct(Procedure $procedureModel, Request $request)
     {
         $this->procedureModel = $procedureModel;
         $this->request = $request;
@@ -55,9 +55,9 @@ class ProcedureController extends Controller
 
         Procedure::create($procedure);
 
-       /*  if($salvou) */
-            return redirect(route('procedures.index'))
-                ->with('success', 'Procedimento cadastrado com sucesso.');
+        /*  if($salvou) */
+        return redirect(route('procedures.index'))
+            ->with('success', 'Procedimento cadastrado com sucesso.');
     }
 
     /**
@@ -68,7 +68,8 @@ class ProcedureController extends Controller
      */
     public function show($id)
     {
-        //
+        $procedure = Procedure::find($id);
+        return view('dashboard.procedures.show', compact('procedure'));
     }
 
     /**
@@ -79,7 +80,9 @@ class ProcedureController extends Controller
      */
     public function edit($id)
     {
-        //
+        $procedure = Procedure::find($id);
+
+        return view('dashboard.procedures.edit', compact(['procedure', 'id']));
     }
 
     /**
@@ -89,9 +92,16 @@ class ProcedureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProceduresValidation $request, $id)
     {
-        //
+        $procedure = $this->request->all();
+
+        $procedure['user_id'] = auth()->user()->id;
+
+        $this->procedureModel->find($id)->update($procedure);
+
+        return redirect(route('procedures.index'))
+            ->with('success', 'Procedimento atualizado com sucesso.');
     }
 
     /**
@@ -102,6 +112,9 @@ class ProcedureController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $procedure = Procedure::find($id);
+        $procedure->delete();
+        return redirect(route('procedures.index'))
+        ->with('success','O Procedimento '. $procedure->name . ' foi excluido com sucesso.');
     }
 }
