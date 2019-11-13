@@ -60,6 +60,17 @@ Route::group(['middleware' => ['auth'], 'namespace'=> 'Dashboard', 'prefix' => '
     Route::any('/search', 'ProcedureController@search')->name('procedure.search');
 });
 
+Route::group(['middleware' => ['auth'], 'namespace'=> 'Dashboard', 'prefix' => 'dashboard/patients'], function(){
+
+    Route::get('/index', 'PatientController@index')->name('patients.index');
+    Route::get('/show/{id}', 'PatientController@show')->name('patient.show');
+    Route::get('/create', 'PatientController@create')->name('patient.create');
+    Route::post('/store', 'PatientController@store')->name('patient.store');
+    Route::get('/{id}/edit', 'PatientController@edit')->name('patient.edit');
+    Route::put('/update/{id}', 'PatientController@update')->name('patient.update');
+    Route::get('/destroy/{id}', 'PatientController@destroy')->name('patient.destroy');
+    Route::any('/search', 'PatientController@search')->name('patient.search');
+});
 
 
 // Route::get('/', 'Home\HomeController@index')->name('home.index');
