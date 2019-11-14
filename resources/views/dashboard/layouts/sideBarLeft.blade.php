@@ -38,6 +38,7 @@
                     <li class="active"><a href="{{route('dashboard.users')}}"><i class="fa fa-users"></i> Usuários </a></li>
                     <li class="active"><a href="{{route('collaborators.index')}}"><i class="fa fa-address-card"></i> Colaboradores </a></li>
                     <li class="active"><a href="{{route('procedures.index')}}"><i class="fa fa-address-book"></i> Procedimentos </a></li>
+                    <li class="active"><a href="{{route('patients.index')}}"><i class="fa fa-user-circle"></i> Pacientes </a></li>
                 </ul>
             </li>
         </ul>
