@@ -56,6 +56,52 @@
             </div>
         </div>
         <!-- ./col -->
+
+
+        <!-- Small boxes (Stat box) -->
+
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    @inject('procedures','App\Models\Procedure')
+                    <h3>{{$procedures->count()}}</h3>
+
+                    <p>Procedimentos</p>
+
+                </div>
+                <div class="icon">
+                    <i class="fa fa-address-card"></i>
+                </div>
+                <a href="{{route('procedures.index')}}" class="small-box-footer">Lista Completa 
+                    <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+
+
+
+
+        <!-- Small boxes (Stat box) -->
+
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    @inject('patients','App\Models\Patient')
+                    <h3>{{$patients->count()}}</h3>
+
+                    <p>Pacientes</p>
+
+                </div>
+                <div class="icon">
+                    <i class="fa fa-address-card"></i>
+                </div>
+                <a href="{{route('patients.index')}}" class="small-box-footer">Lista Completa 
+                    <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
     </div>
 </section>
 @endsection

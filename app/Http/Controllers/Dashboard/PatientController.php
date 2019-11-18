@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PatientsValidation;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class PatientController extends Controller
     {
         $patients = $this->patientModel->orderBy('name')->paginate(10);
         $title = "Lista Pacientes";
-        return view('dashboard.patients.index', compact('patients','title'));
+        return view('dashboard.patients.index', compact('patients', 'title'));
     }
 
 
@@ -37,7 +38,8 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        $title = "Cadastrar Paciente";
+        return view('dashboard.patients.create');
     }
 
     /**
@@ -46,9 +48,16 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatientsValidation $request)
     {
-        //
+        $patient = $this->request->all();
+
+        $patient['user_id'] = auth()->user()->id;
+
+        Patient::create($patient);
+
+        return redirect(route('patients.index'))
+            ->with('success', 'Paciente cadastrado com sucesso.');
     }
 
     /**
