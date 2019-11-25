@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PatientsValidation;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use App\User;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class PatientController extends Controller
 {
@@ -68,7 +70,8 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        //
+        $patient = Patient::find($id);
+        return view('dashboard.patients.show', compact(['patient']));
     }
 
     /**
@@ -79,7 +82,8 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $patient = Patient::find($id);
+        return view('dashboard.patients.edit', compact(['patient','id']));
     }
 
     /**
@@ -89,9 +93,18 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PatientsValidation $request, $id)
     {
-        //
+        $patient = $this->request->all();
+
+        $patient['user_id'] = auth()->user()->id;
+
+       $this->patientModel->find($id)->update($patient);
+
+       
+       return redirect(route('patients.index'))
+            ->with('success', 'Dados do paciente atualizados com sucesso.');
+        
     }
 
     /**
@@ -102,6 +115,12 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $patient = Patient::find($id);
+
+        $patient->delete();
+
+        return redirect(route('patients.index'))
+                ->with('success', 'O paciente ' . $patient->name .
+                ' foi excluido com sucesso.');
     }
 }
